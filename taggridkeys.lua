@@ -1,8 +1,8 @@
-----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 ---- @author AfoHT
 ---- @copyright 2020 AfoHT
----- @license MIT/Apache
----- @module globalkeys
+---- @license MIT
+---- @module taggridkeys
 ------------------------------------------------------------------------------
 
 -- Package envronment
@@ -22,22 +22,53 @@ function _M.get(globalkeys)
         globalkeys = gears.table.join(globalkeys,
             -- View tag only.
             awful.key({ modkey }, "#" .. i + 9,
-            function ()
-                taggrid.numviewtag(i)
-            end,
+            function () taggrid.numviewtag(i) end,
                 {description = "view tag #"..i, group = "tag"}),
             -- Toggle tag display.
-            awful.key({ modkey, "Control" }, "#" .. i + 9, taggrid.numviewtoggle(i),
+            awful.key({ modkey, "Control" }, "#" .. i + 9,
+            function () taggrid.numviewtoggle(i) end,
                     {description = "toggle tag #" .. i, group = "tag"}),
 
             -- Move client to tag.
-            awful.key({ modkey, "Shift" }, "#" .. i + 9, taggrid.numshifttag(i),
+            awful.key({ modkey, "Shift" }, "#" .. i + 9,
+            function () taggrid.numshifttag(i) end,
                     {description = "move focused client to tag #"..i, group = "tag"}),
             -- Toggle tag on focused client.
-            awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, taggrid.numtoggletag(i),
+            awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+            function () taggrid.numtoggletag(i) end,
                     {description = "toggle focused client on tag #" .. i, group = "tag"})
         )
-     end
+    end
+    globalkeys = gears.table.join(globalkeys,
+    -- Switch tag up or down
+        -- Move down a column
+        awful.key({ modkey,           }, "Down", taggrid.viewdown,
+                {description = "Jump down one column", group = "tag"}),
+        -- Move up a column
+        awful.key({ modkey,           }, "Up", taggrid.viewup,
+                {description = "Jump up one column", group = "tag"}),
+
+    -- Shift windows to left or right
+
+        -- Shift left
+        awful.key({ modkey, "Shift"   }, ",", taggrid.shiftleft,
+                {description = "Move tag left", group = "tag"}),
+        -- Shift right
+        awful.key({ modkey, "Shift"   }, ".", taggrid.shiftright,
+                {description = "Move tag right", group = "tag"}),
+        -- Shift left
+        awful.key({ modkey, "Shift"   }, "Left", taggrid.shiftleft,
+                {description = "Move tag left", group = "tag"}),
+        -- Shift right
+        awful.key({ modkey, "Shift"   }, "Right", taggrid.shiftright,
+                {description = "Move tag right", group = "tag"}),
+
+    -- Shift windows up or down
+        awful.key({ modkey, "Shift"   }, "Down", taggrid.shiftdown,
+                {description = "Move tag down", group = "tag"}),
+        awful.key({ modkey, "Shift"   }, "Up", taggrid.shiftup,
+                {description = "Move tag up", group = "tag"})
+    )
   return globalkeys
 end
 

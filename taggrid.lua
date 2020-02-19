@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------
 ---- @author AfoHT
 ---- @copyright 2020 AfoHT
----- @license MIT/Apache
+---- @license MIT
 ---- @module taggrid
 ------------------------------------------------------------------------------
 
@@ -89,13 +89,13 @@ end
 -- Jump to the row below in the grid
 function taggrid.viewdown()
     local tag_offset = taggrid.tag_offset
-    awful.tag.viewidx(-tag_offset)
+    awful.tag.viewidx(tag_offset)
 end
 
 -- Jump to the row above in the grid
 function taggrid.viewup()
     local tag_offset = taggrid.tag_offset
-    awful.tag.viewidx(tag_offset)
+    awful.tag.viewidx(-tag_offset)
 end
 
 -- Shift the currently focused client left
@@ -170,6 +170,7 @@ end
 -- Shift the focused tag "upwards" in the grid
 function taggrid.shiftup()
     if client.focus then
+        local tag_offset = taggrid.tag_offset
         local t = awful.screen.focused().selected_tag
         local curidx = t.index
         local tag
