@@ -1,11 +1,10 @@
-#Extension providing a grid layout for Awesomewm 4.3
-
+# Extension providing a grid layout for Awesomewm 4.3
 
 ## Installation
 
 Clone this repo, for ease of use in the same folder where `rc.lua` is.
 
-Add something like 
+Add something like:
 
 ``` lua
 -- Include taggrid, a mxn grid of tags
@@ -14,7 +13,6 @@ taggridkeys = require("taggrid.taggridkeys")
 ```
 
 Below the awesome libraries but nearby the top of `rc.lua`.
-
 
 Comment and replace `awful.tag()` like this:
 
@@ -27,6 +25,7 @@ awful.tag(taggrid.tags, s, awful.layout.layouts[1])
 ```
 
 And provide the `gridlayout` for the `taglist`:
+
 ``` lua
 -- Create a taglist widget
 -- using the gridlayout from taggrid
@@ -44,6 +43,7 @@ Most of the keybindings will be imported from `taggridkeys` but `viewprev` and  
 will be changed in-place.
 
 Change to the following if wrapping around on the same row is desirable:
+
 ``` lua
     awful.key({ modkey,           }, "Left",  taggrid.viewprev, --awful.tag.viewprev
               {description = "view previous", group = "tag"}),
