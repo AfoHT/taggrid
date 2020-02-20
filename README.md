@@ -1,4 +1,6 @@
-# Extension providing a grid layout for Awesomewm 4.3
+# Extension providing a grid layout for awesomeWM 4.3
+
+awesomeWM https://github.com/awesomeWM/awesome
 
 ## Installation
 
