@@ -1,6 +1,6 @@
 # Extension providing a grid layout for awesomeWM 4.3
 
-awesomeWM https://github.com/awesomeWM/awesome
+awesomeWM <https://github.com/awesomeWM/awesome>
 
 ## Installation
 
@@ -9,7 +9,7 @@ Clone this repo, for ease of use in the same folder where `rc.lua` is.
 Add something like:
 
 ``` lua
--- Include taggrid, a mxn grid of tags
+-- Include taggrid, a m x n grid of tags
 taggrid = require("taggrid.taggrid")
 taggridkeys = require("taggrid.taggridkeys")
 ```
@@ -116,9 +116,46 @@ globalkeys = taggridkeys(globalkeys)
 
 ## Styling/looks
 
-To make the numbers fit the tags modify your theme with:
+Useful properties for tuning the size:
 
 ``` lua
 theme.taglist_font                  = "Terminus 4"
+-- Not needed, will autoadjust to content
+--theme.wibar_height                  = 30
 ```
 
+## Example
+
+Scaled up on a low resolution 1280x800 screen, wibar_height = 50, "Terminus 7":
+
+![Example image](images/taggrid-wibarheight50-font7.png)
+
+On the same screen (12") running with taglist_font = "Terminus 4":
+
+![Full screen image](images/taggrid-fulldesktop.png)
+
+## Usage
+
+Awesome use the keycodes directly, so the whole number row, from number 1 to 9 continuing towards the backspace key on my Swedish keyboard.
+
+This provides direct access to 13 tags.
+
+```
+Modkey + (1 to 9), Modkey + 0, Modkey + [, Modkey + ], Modkey + "Backspace"
+```
+
+The same modifiers as in stock awesome for toggling views and tags.
+
+Supports moving between tags in all directions:
+
+```
+Modkey + ArrowKeys(Up, Down, Left, Right)
+Modkey + <
+Modkey + >
+```
+
+Add "Shift" for shifting the currently focused client.
+
+Scrolling on the tagbar will cycle through all tags, using the movement keys it will wrap around on the current row. Similar behaviour for shifting clients.
+
+See `taggridkeys.lua` for more details.
