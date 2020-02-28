@@ -25,9 +25,9 @@ taggrid.tags = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "[", "]", "‚Ü
                  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "[", "]", "‚Üê"
                }
 
-
+function taggrid.getlayout()
 -- Create a gridlayout for the above tags
-    taggrid.gridlayout = wibox.widget {
+    local layout = wibox.widget {
         forced_num_cols = taggrid.tag_offset,
         forced_num_rows = taggrid.tag_column_count,
         --min_rows_size   = 10,
@@ -35,6 +35,9 @@ taggrid.tags = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "[", "]", "‚Ü
         expand          = true,
         layout = wibox.layout.grid
     }
+
+    return layout
+end
 
 -- View the next tag to the left, wrapping on the current row
 -- Replacing awful.tag.viewprev
@@ -82,6 +85,8 @@ function taggrid.viewnext()
         tag = screen.tags[curidx + 1]
     end
     if tag then
+        -- Can be replaced with awful.tag.viewidx(i,[screen])
+        -- view_only() is deprecated
         tag:view_only()
     end
 end
